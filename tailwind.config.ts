@@ -14,7 +14,18 @@ const config: Config = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
     },
+    colors: {
+      transparent: 'transparent',
+      current: 'currentColor',
+      'black': '#191308',
+      'brown': '#322A26',
+      'darkBlue': '#454B66',
+      'blue': '#677DB7',
+      'lightBlue': '#9CA3DB',
+    },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar')
+  ],
 }
 export default config
