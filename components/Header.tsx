@@ -1,13 +1,34 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { SocialIcon } from "react-social-icons";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { Social } from "@/typings";
+import { fetchSocials } from "@/utils/fetchSocials";
 
-type Props = {};
+type Props = {
+  socials: Social[];
+};
 
-function Header({}: Props) {
+function Header({ socials }: Props) {
+  // const [socials, setSocials] = useState<Social[]>([]);
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const socialsData = await fetchSocials();
+
+  //       setSocials(socialsData);
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error);
+  //     }
+  //   };
+
+  //   fetchData();
+  //   console.log(socials);
+  // }, []);
+
   return (
     <header
       className="sticky top-0 p-5 flex justify-between max-w-7xl mx-auto z-20
@@ -30,7 +51,15 @@ function Header({}: Props) {
         className="flex flex-row items-center"
       >
         {/* Social Icons */}
-        <SocialIcon
+        {socials.map((social) => (
+          <SocialIcon
+            key={social._id}
+            url={social.url}
+            fgColor="gray"
+            bgColor="transparent"
+          />
+        ))}
+        {/* <SocialIcon
           url="https://www.facebook.com"
           fgColor="gray"
           bgColor="transparent"
@@ -49,7 +78,7 @@ function Header({}: Props) {
           url="https://www.twitter.com"
           fgColor="gray"
           bgColor="transparent"
-        />
+        /> */}
       </motion.div>
 
       <Link href="#contact">
